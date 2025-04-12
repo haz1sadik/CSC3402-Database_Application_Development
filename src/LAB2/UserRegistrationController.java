@@ -49,12 +49,14 @@ public class UserRegistrationController extends Application {
             alert.setTitle("Error");
             alert.setHeaderText("Please enter all fields");
             alert.showAndWait();
+            return;
         }
         if (!password.equals(confirmPassword)){
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Confirm password does not match");
             alert.showAndWait();
+            return;
         }
         addUserToDatabase(name, email, phone, address, password);
     }
