@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar Lab 5</title>
+</head>
+<body>
+<div class="calendar">
+    <div class="calendar-header">
+        <button id="prev-month" onClick="previousButton()">‹</button>
+        <div id="month-year"></div>
+        <button id="next-month" onClick="nextButton()">›</button>
+    </div>
+    <div class="calendar-body">
+        <div class="calendar-days">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+        <div class="calendar-dates"></div>
+    </div>
+</div>
+
+    <style>
+        body{
+            font-family: monospace;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            height: 100vh;
+        }
+        .calendar{
+            background-color: #edc6a0;
+            width: 450px;
+            border-radius: 30px;
+            padding: 10px;
+            box-shadow: 0 4px 8px 0 rgba(126, 70, 0, 0.2);
+        }
+        .calendar-header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        .calendar-header button{
+            background-color: #fbe6ca;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.5em;
+            padding: 5px 16px;
+            cursor: pointer;
+        }
+        #month-year {
+            font-size: 2.0em;
+            font-weight: bold;
+        }
+        .calendar-days, .calendar-dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            border: none;
+        }
+        .calendar-days div, .calendar-dates div {
+            text-align: center;
+            padding: 10px;
+            font-size: 1.7em;
+        }
+        .calendar-days {
+            background-color: #d1a06e;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(126, 70, 0, 0.2);
+
+        }
+        .calendar-days div {
+            font-weight: bold;
+        }
+        .calendar-dates div {
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .calendar-dates div:hover {
+            background-color: #ffe1c4;
+            box-shadow: 0 4px 8px 0 rgba(126, 70, 0, 0.2);
+        }
+        .today {
+            background-color: #ffd8ac;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        const calendarDates = document.querySelector('.calendar-dates');
+        const monthYear = document.getElementById('month-year');
+        //const prevMonthBtn = document.getElementById('prev-month');
+        //const nextMonthBtn = document.getElementById('next-month');
+
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        const months = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+        function renderCalendar(month, year) {
+            calendarDates.innerHTML = '';
+            monthYear.textContent = `${months[month]} ${year}`;
+
+            // Get the first day of the month
+            const firstDay = new Date(year, month, 1).getDay();
+
+            // Get the number of days in the month
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Create blanks for days of the week before the first day
+            for (let i = 0; i < firstDay; i++) {
+                const blank = document.createElement('div');
+                calendarDates.appendChild(blank);
+            }
+
+            // Populate the days
+            for (let i = 1; i <= daysInMonth; i++) {
+                const day = document.createElement('div');
+                day.textContent = i;
+                if (
+                    i === currentDate.getDate() &&
+                    month === currentDate.getMonth() &&
+                    year === currentDate.getFullYear()
+                ) {
+                    day.classList.add('today');
+                }
+                calendarDates.appendChild(day);
+            }
+        }
+        renderCalendar(currentMonth, currentYear);
+
+        function previousButton(){
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar(currentMonth, currentYear);
+        }
+
+        function nextButton(){
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            renderCalendar(currentMonth, currentYear);
+        }
+
+    </script>
+</body>
+</html>
