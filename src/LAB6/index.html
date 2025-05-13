@@ -4,11 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Title</title>
+    <title>Try</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 </head>
+<script>
+    function setCountry(countryName) {
+        document.getElementById("countryDropdownBtn").textContent = countryName;
+    }
+    function registerBtn(){
+        document.getElementById("register").style = "color: green; font-weight: bold;";
+        document.getElementById("register").textContent = "Registered";
+    }
+</script>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand navbar-dark bg-black">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">Hazuan</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Settings</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="col d-flex justify-content-center">
+        <form class="box main">
+            <div class="row">
+                <h1 id="register" style="font-weight: bold;">Register</h1>
+            </div>
+            <div class="row left">
+                <label for="email" class="form-label" style="padding-left: 5px;">E-mail</label>
+                <input type="email" class="form-control" placeholder="name@yahoo.com">
+            </div>
+            <div class="row left">
+                <label for="email" class="form-label"  style="padding-left: 5px;">Password</label>
+                <input type="password" class="form-control" placeholder="******">
+            </div>
+            <div class="row left" style="margin-top: 10px; margin-bottom: 20px; margin-left: -30px;">
+                <div class="dropdown">
+                    <button id="countryDropdownBtn" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 107%;">
+                        Country
+                    </button>
+                    <ul class="dropdown-menu" style="width: 100%;">
+                        <li><a class="dropdown-item" href="#" onclick="setCountry('Malaysia')">Malaysia</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setCountry('Indonesia')">Indonesia</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setCountry('Singapore')">Singapore</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row left" style="margin-bottom: 20px; margin-left: -30px">
+                <div class="form-check" style="padding-left: 40px;">
+                    <input type="checkbox" class="form-check-input">
+                    <label for="check" class="form-check-label">Remember me</label>
+                </div>
+            </div>
+            <div class="row" style="width: 30%;">
+                <button class="btn btn-primary" onclick="registerBtn()">Register</button>
+            </div>
+        </form>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous">
+</script>
+
+</script>
+<style>
+    .row.left{
+        margin-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+    }
+    .box.main{
+        background-color: rgb(224, 224, 224);
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 30px;
+        width: 350px;
+        height: 450px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        display: flex;
+    }
+    .form-control{
+        border-radius: 40px;
+    }
+    .btn{
+        border-radius: 40px;
+    }
+</style>
 </body>
 </html>
